@@ -1,25 +1,20 @@
 <?php declare( strict_types=1 );
-require_once __DIR__ . "/html_gen/HtmlGen.php";
+if(PHP_MAJOR_VERSION.PHP_MINOR_VERSION < 73) die("I need at least PHP 7.3 to function properly!!!");
+require_once __DIR__ . "/lib/htmlfactory.class.php";
 
-use HtmlGen as html;
-$copyRight = 'Copyright © Mattijs Snepvangers 2019-' . date( 'Y' );
-// languages
-const LANG_EN = "en";
-const LANG_NL = "nl";
-$lang = array_key_exists("lang", $_GET)?$_GET['lang'] : LANG_EN;
-if( $lang != LANG_NL ) $lang = LANG_EN;
-$siteTitle = [ LANG_EN => "Mattijs' Brython Test Site", LANG_NL => "Mattijs' Brython Test Site" ];
-$siteKeywords = "Brython, Proof of Concept, Pegasus ICT Dienstverlening";
+$html = new pegasusict\HtmlFactory();
+$html->setSiteTitle ([$html::LANG_EN => "Mattijs' Brython Test Site", $html::LANG_NL => "Mattijs' Brython Test Site" ]);
+$siteKeywords = "Html Factory, Proof of Concept, Pegasus ICT Dienstverlening";
 //pages
 $page  = array_key_exists("page",$_GET)?$_GET['page'] : 0;
 $pages = [ 'home', 'contact' ];
 if( !array_key_exists( $page,  $pages ) ) $page = 0;
 $pageTitles  = [
     [ LANG_EN   => "Welcome"
-      , LANG_NL => "Welkom"
+    , LANG_NL   => "Welkom"
     ]
     , [ LANG_EN   => "Contact Me"
-        , LANG_NL => "Neem Contact Op"
+    , LANG_NL => "Neem Contact Op"
     ]
 ];
 $pageContent = [
@@ -42,7 +37,7 @@ $pageContent = [
 ];
 
 // prepare to set and display some html headers
-html::setHeader( "charset=utf8", "language=$lang", "title=" . $siteTitle[ $lang ] . " ~ " . $pageTitles[ $page ][ $lang ], "keywords=$siteKeywords" );
+html::setHeader( "language=$lang", "title=" . $siteTitle[ $lang ] . " ~ " . $pageTitles[ $page ][ $lang ], "keywords=$siteKeywords" );
 
 if( file_exists( __DIR__ . "/favicon.ico" ) ) html::setHeader( "icon=favicon.ico" );
 html::setHeader("css=css/style.css");
