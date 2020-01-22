@@ -30,13 +30,9 @@ define( "DEVELOP_MODE", true );
  * @method static textarea( ...$args )
  */
 class HtmlGen {
-    public const  DISPLAY         = "display";
     public const  INPUT           = "input";
-    public const  CONTENT         = "content=";
     public const  INDENT          = "  ";
-    public const  NAME_IS         = "name=";
     public const  RETURN          = "ret";
-    public const  EQUIV           = "http-equiv=";
     public const  TYPE_JS         = "type=text/javascript";
     public const  TYPE_PY         = "type=text/python";
     public const  TYPE_CSS        = "type=text/css";
@@ -151,71 +147,10 @@ class HtmlGen {
         unset ( self::$_stack[ ( count( self::$_stack ) - 1 ) ] );
     }
 
-    public static function setHeader() {
-        $lArguments = func_get_args();
-        static $lHeader = null;
-        foreach( $lArguments as $lArgument ) {
-            $lArgument = explode( "=", $lArgument, 2 );
-            if( ( $lArgument[0] !== self::DISPLAY ) ) {
-                $lHeader    .= "  ";
-                $lEndOfLine = "\n";
-            } else $lEndOfLine = null;
-            if( !$lArgument[0] ) return;
-            switch( $lArgument[0] ) {
-                case "description":
-                case "author":
-                case "generator":
-                case "keywords":
-                case "application-name":
-                case "viewport":
-                    $lHeader .= self::meta( self::NAME_IS . $lArgument[0], self::CONTENT . $lArgument[1], self::RETURN ) . $lEndOfLine;
-                    break;
-                case "charset":
-                    $lHeader .= self::meta( self::EQUIV . "Content-Type", self::CONTENT . "text/html;charset=" . $lArgument[1], self::RETURN ) . $lEndOfLine;
-                    break;
-                case "language":
-                case "refresh":
-                    $lHeader .= self::meta( self::EQUIV . $lArgument[0], self::CONTENT . $lArgument[1], self::RETURN ) . $lEndOfLine;
-                    break;
-                case "nocache":
-                    $lHeader .= self::meta( self::EQUIV . "cache-control", "content=no-cache", self::RETURN ) . $lEndOfLine;
-                    break;
-                case "title":
-                    $lHeader .= self::title( "txt=" . $lArgument[1], self::RETURN ) . $lEndOfLine;
-                    break;
-                case "css":
-                    $lHeader .= self::link( "rel=stylesheet", "href=" . $lArgument[1], self::RETURN ) . $lEndOfLine;
-                    break;
-                case "icon":
-                    $lHeader .= self::link( "rel=shortcut icon", "href=" . $lArgument[1], self::RETURN ) . $lEndOfLine;
-                    break;
-                case "meta":
-                case "link":
-                    $lHeader .= self::_singleRow( $lArgument[0] . "|" . $lArgument[1] . "|ret" ) . $lEndOfLine;
-                    break;
-                case "script":
-                    $lHeader .= self::script( self::TYPE_JS, null, $lArgument[1], self::RETURN );
-                    break;
-                case "js":
-                    $lHeader .= self::script(self::TYPE_JS, $lArgument[1],null, self::RETURN );
-                    break;
-                case self::DISPLAY:
-                    print DOCTYPE . "\n";
-                    self::html();
-                    self::head();
-                    print $lHeader;
-                    self::addComment(self::COPYRIGHT . date( 'Y' ));
-                    self::closeTag();
-                    break;
-                default:
-                    $lHeader .= self::_tag( array_merge( func_get_args(), [ self::RETURN ] ) ) . $lEndOfLine;
-                    break;
-            }
-        }
-    }
+
 
     public static function displayHeader() {
-        self::setHeader( self::DISPLAY );
+        self::setHeader("display");
     }
 
     private static function _singleRow( $pParam = null ) {
