@@ -1,5 +1,30 @@
 {
-  "require": {
-    "php": "^7.3"
-  }
+  "name": "pegasusict/htmlfactory",
+  "description": "A PHP7.3+ microframework, capable of generating a website or app based on minimal information, including only those parts of libraries which are actually used",
+  "type":"project",
+  "keywords":"php7,html5,lightweight,compact,framework,microframework",
+  "license":"MIT",
+  "authors":[
+    {
+      "name":"Mattijs Snepvangers",
+      "email":"pegasus.ict@gmail.com",
+      "role":"Developer"
+    }
+  ],
+  "support":{
+    "email":"pegasus.ict@gmail.com"
+  },
+  "autoload": {
+    "psr-4": {
+      "Pegasus-ICT\\": [
+        "src/",
+        "lib/"
+      ],
+      "": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": { "Pegasus-ICT\\Tests\\": "tests/" }
+  },
+  "_comment":"note to self: Check out extra fields when project evolves: 'config','extra','archive'"
 }
