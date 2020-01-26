@@ -2,7 +2,7 @@
   "name": "pegasusict/htmlfactory",
   "description": "A PHP7.3+ microframework, capable of generating a website or app based on minimal information, including only those parts of libraries which are actually used",
   "type":"project",
-  "keywords":"php7,html5,lightweight,compact,framework,microframework",
+  "keywords":["php7","html5","lightweight","compact","framework","microframework"],
   "license":"MIT",
   "authors":[
     {
