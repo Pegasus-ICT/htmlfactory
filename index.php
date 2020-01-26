@@ -1,68 +1,7 @@
 <?php declare( strict_types = 1 );
-if( PHP_MAJOR_VERSION . PHP_MINOR_VERSION < 73 ) {
-    die( "I need at least PHP 7.3 to function properly!!!" );
-}
-require_once __DIR__ . "/lib/htmlfactory.class.php";
-use pegasusict\HtmlFactory as html;
-
-$html = new html();
-$html->setSiteTitle( [ html::LANG_EN => "Mattijs' Brython Test Site", html::LANG_NL => "Mattijs' Brython Test Site" ] );
-$html->setKeywords( [] );
-//pages
-$page  = array_key_exists( "page", $_GET ) ? $_GET[ 'page' ] : 0;
-$pages = [ 'home', 'contact' ];
-if( ! array_key_exists( $page, $pages ) ) {
-    $page = 0;
-}
-$pageTitles  = [
-    [ html::LANG_EN => "Welcome"
-      ,
-      html::LANG_NL => "Welkom"
-    ]
-    ,
-    [ html::LANG_EN => "Contact Me"
-      ,
-      html::LANG_NL => "Neem Contact Op"
-    ]
-];
-$pageContent = [
-    [ html::LANG_EN   => <<<EOT
-            Welcome to the Brython test site of Mattijs Snepvangers.
-            This is just a small Proof Of Concept.
-            EOT
-      , html::LANG_NL => <<<EOT
-            Welkom op de Bryton test site van Mattijs Snepvangers.
-            Dit is een concept test.
-            EOT
-    ]
-    , [ html::LANG_EN   => <<<EOT
-            Contact Page.
-            EOT
-        , html::LANG_NL => <<<EOT
-            Contact Pagina.
-            EOT
-    ]
-];
-
-// prepare to set and display some html headers
-$html->setHeader( "language=$lang", "title=" . $siteTitle[ $lang ] . " ~ " . $pageTitles[ $page ][ $lang ], "keywords=$siteKeywords" );
-
-if( file_exists( __DIR__ . "/favicon.ico" ) ) html::setHeader( "icon=favicon.ico" );
-html::setHeader("css=css/style.css");
-foreach( [ "brython", "brython_stdlib" ] as $js ) html::setHeader( sprintf( 'js=js/%s.js', $js ) );
-html::displayHeader();
-html::addComment( $copyRight  );
-
-html::body( "id=body",'onload=brython(1)' );
-html::script("py" ,"brython/bind.py");
-
-html::startBlock();
-html::div( "class=container" );
-
-
-html::endBlock();
-//html::closetag();
-# display copyright
-html::div( "style=text-align:center;font-size:80%;padding:10em;", "txt=".$copyRight );
-# closes all opened tags
-html::finish();
+// minimalist scenario
+require_once __DIR__ . "/vendor/pegasusict/HtmlFactory.class.php";
+use pegasusict\HtmlFactory;
+$config=["mysites.ini","mysite1.ini"]; // ini files can be 'stacked', overlapping values are overwritten.
+$html = new HtmlFactory($config);
+$html->render();
