@@ -1,33 +1,32 @@
 {
-  "name": "PegasusICT/HtmlFactory",
-  "description": "A PHP7.4+ micro framework, capable of generating a website or app based on minimal information, including only those parts of libraries which are actually used",
+  "name": "pegasus-ict/html-factory",
+  "description": "A PHP7.0+ micro framework, capable of generating a website or app based on minimal information, including only those parts of libraries which are actually used",
   "type":"project",
   "keywords":["php7","html5","lightweight","compact","framework","micro framework"],
   "license":"MIT",
-  "authors":[
-    {
+  "authors":[{
       "name":"Mattijs Snepvangers",
       "email":"pegasus.ict@gmail.com",
       "role":"Developer"
-    }
-  ],
-   "require": {
-    "php": "^7.4"
+    }],
+  "require": {
+    "php": "^7.0",
+    "scssphp/scssphp": "1.0.6",
+    "components/bootstrap": "4.4.1",
+    "components/css-reset": "2.5",
+    "components/font-awesome": "5.12.0",
+    "components/html5-boilerplate": "4.3.0",
+    "components/jquery": "3.4.1",
+    "components/jqueryui": "1.12.1"
   },
-  "support":{
-    "email":"pegasus.ict@gmail.com"
-  },
+  "support":{"email":"pegasus.ict@gmail.com"},
   "autoload": {
     "psr-4": {
-      "": "src/",
-      "Pegasus-ICT\\": [
-        "src/",
-        "lib/"
-      ]
+      "PegasusICT\\":"PegasusICT/",
+      "PegasusICT\\HtmlFactory\\": [ "PegasusICT/HtmlFactory/", "PegasusICT/HtmlFactory/controller/", "PegasusICT/HtmlFactory/exception/",
+        "PegasusICT/HtmlFactory/interface/", "PegasusICT/HtmlFactory/model/", "PegasusICT/HtmlFactory/system/" ]
     }
   },
-  "autoload-dev": {
-    "psr-4": { "Pegasus-ICT\\Tests\\": "tests/" }
-  },
+  "autoload-dev": { "psr-4": { "Pegasus-ICT\\Tests\\": "tests/" } },
   "_comment":"note to self: Check out extra fields when project evolves: 'config','extra','archive'"
 }
