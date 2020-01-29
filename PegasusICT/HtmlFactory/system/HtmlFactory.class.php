@@ -65,11 +65,11 @@ namespace PegasusICT\HtmlFactory{
 
         /**
          * @param array $pages per page: pageID => [ lang => title,lang => title ]
+         *
+         * @throws \Exception
          */
         public function setPages( array $pages ) {
-            foreach( $pages as $pageID => $pageTitles ) {
-                $this->_pages[$pageID] = new HtmlPage($pageTitles);
-            }
+            foreach( $pages as $pageID => $pageTitles ) $this->_pages[$pageID] = new HtmlPage($pageTitles);
         }
 
         /**
@@ -220,8 +220,9 @@ namespace PegasusICT\HtmlFactory{
 
         public function render() {
             $this->_validate();
-            $result  = HC::DOC_TYPE.HC::NL;
-            $result .=
+            $result  = "<!DOCTYPE html>\n";
+            $this->_getLangRequest();
+            $result .="";
 
             return $result;
         }

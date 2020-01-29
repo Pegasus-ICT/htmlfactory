@@ -28,12 +28,12 @@ class HtmlConstants extends FieldTypes {
     ];
     public const RETURN       = "ret";
     public const APP_NAME     = 'Html Factory';
-    public const AUTHOR       = [
+    public const AUTHOR          = [
         'name'=> "Mattijs Snepvangers",
         'organisation'=> "Pegasus ICT Dienstverlening"
     ];
     public const DS              = DIRECTORY_SEPARATOR;
-    public const NL          = "\n";
+    public const NL              = "\n";
     public const ELEMENTS_SINGLE = [
         "img", "input", "br", "hr", "param", "meta", "link", "base", "frame", "embed", "area"];
     public const HEADER_FIELDS   = ['application-name', 'author', 'charset', 'content-type', 'css', 'description', 'generator', 'icon', 'js', 'keywords', 'language', 'link', 'meta', 'nocache', 'refresh', 'style', 'title', 'viewport'];
