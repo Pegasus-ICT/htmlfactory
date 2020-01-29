@@ -161,7 +161,6 @@ dist/
 downloads/
 eggs/
 .eggs/
-PegasusICT/HtmlFactory/
 lib64/
 parts/
 sdist/

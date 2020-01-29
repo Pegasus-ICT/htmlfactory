@@ -10,7 +10,7 @@
       "role":"Developer"
     }],
   "require": {
-    "php": "^7.0",
+    "php": "^7.1",
     "scssphp/scssphp": "1.0.6",
     "components/bootstrap": "4.4.1",
     "components/css-reset": "2.5",

@@ -1,0 +1,6 @@
+[submodule "htmlfactory.wiki"]
+	path = htmlfactory.wiki
+	url = https://github.com/pegasus-ict/htmlfactory.wiki.git
+[submodule "PHP-Helpers"]
+	path = PHP-Helpers
+	url = https://github.com/Pegasus-ICT/PHP-Helpers
